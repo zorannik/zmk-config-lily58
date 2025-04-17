@@ -10,6 +10,15 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        combo_qw_tildae {
+            bindings = <&kp ESCAPE>;
+            key-positions = <13 14>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
