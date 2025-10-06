@@ -19,8 +19,8 @@ shield_right="splitkb_aurora_lily58_right"
 zmk_load_arg=" -DZMK_EXTRA_MODULES=$BUILD_DIR"
 
 mkdir -p "$BASE_DIR"
-cp -R "$LILY58/config" "$ZMK_CONFIG_DIR"
-cp -R "$LILY58/*" "$BUILD_DIR"
+cp -R $LILY58/config "$ZMK_CONFIG_DIR"
+cp -R $LILY58/* "$BUILD_DIR"
 
 git config --global --add safe.directory "$BASE_DIR"
 git config --global --add safe.directory "$BASE_DIR/zephyr"
