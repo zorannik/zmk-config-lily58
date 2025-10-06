@@ -1,0 +1,9 @@
+services:
+  build:
+    image: zmkfirmware/zmk-build-arm:stable
+    entrypoint: "/entrypoint.sh"
+    volumes:
+      - ../:/zmk-keyboard:ro
+      - ./entrypoint.sh:/entrypoint.sh:ro
+      - .build:/build:rw
+      - /tmp/zmk:/tmp

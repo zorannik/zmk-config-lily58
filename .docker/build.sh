@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+$TMPDIR
+
 docker run \
   -it \
   --rm \
