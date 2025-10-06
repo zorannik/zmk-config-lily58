@@ -2,7 +2,7 @@ services:
   build:
     image: zmkfirmware/zmk-build-arm:stable
     entrypoint: "/entrypoint.sh"
-    # command: "tail -f /dev/null"
+    #command: "tail -f /dev/null"
     environment:
       - LILY58=/lily
     volumes:
