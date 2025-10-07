@@ -9,4 +9,4 @@ services:
       - ../:/$LILY58:ro
       - ./entrypoint.sh:/entrypoint.sh:ro
       - ./firmwares:/build:rw
-      - /tmp/zmk:/tmp
+      - ./tmp:/tmp
