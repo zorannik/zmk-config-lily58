@@ -16,6 +16,7 @@ EOF
 board="nice_nano_v2"
 shield_left="splitkb_aurora_lily58_left"
 shield_right="splitkb_aurora_lily58_right"
+shield_reset="settings_reset"
 zmk_load_arg=" -DZMK_EXTRA_MODULES=$BUILD_DIR"
 
 mkdir -p "$BASE_DIR"
@@ -48,5 +49,10 @@ west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -S "studio-rpc-usb-uart"
 cp "$BUILD_DIR/zephyr/zmk.uf2" "/build/splitkb_aurora_lily58_left-nice_nano_v2-zmk.uf2"
 
 export "display_name=${shield:+$shield_right - }${board}"
-west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -S "studio-rpc-usb-uart" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="splitkb_aurora_lily58_right" -DZMK_EXTRA_MODULES="$BUILD_DIR" -DCONFIG_ZMK_STUDIO=y || exit 1
+west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="splitkb_aurora_lily58_right" -DZMK_EXTRA_MODULES="$BUILD_DIR" -DCONFIG_ZMK_STUDIO=y || exit 1
 cp "$BUILD_DIR/zephyr/zmk.uf2" "/build/splitkb_aurora_lily58_right-nice_nano_v2-zmk.uf2"
+
+# add reset firmware for good measure, can be disabled once you have it made
+export "display_name=${shield:+$shield_reset - }${board}"
+west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="$shield_reset" -DZMK_EXTRA_MODULES="$BUILD_DIR" || exit 1
+cp "$BUILD_DIR/zephyr/zmk.uf2" "/build/nice_nano_v2_reset-zmk.uf2"

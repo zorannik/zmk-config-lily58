@@ -8,5 +8,5 @@ services:
     volumes:
       - ../:/$LILY58:ro
       - ./entrypoint.sh:/entrypoint.sh:ro
-      - .build:/build:rw
+      - ./firmwares:/build:rw
       - /tmp/zmk:/tmp
