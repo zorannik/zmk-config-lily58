@@ -1,5 +1,19 @@
 name: Build ZMK firmware
-on: [push, pull_request, workflow_dispatch]
+on: 
+  push:
+    paths-ignore:
+      - "build-locally/**"
+      - "**/*.md"
+
+  pull_request:
+    paths-ignore:
+      - "build-locally/**"
+      - "**/*.md"
+
+  workflow_dispatch:
+    paths-ignore:
+      - "build-locally/**"
+      - "**/*.md"
 
 jobs:
   build:

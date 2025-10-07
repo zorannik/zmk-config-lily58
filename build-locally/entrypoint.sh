@@ -45,17 +45,17 @@ west update --fetch-opt=--filter=tree:0
 echo "west zephyr export ..."
 west zephyr-export
 
-west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -S "studio-rpc-usb-uart" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="splitkb_aurora_lily58_left" -DZMK_EXTRA_MODULES="$BUILD_DIR" -DCONFIG_ZMK_STUDIO=y || exit 1
+west build -p -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -S "studio-rpc-usb-uart" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="splitkb_aurora_lily58_left" -DZMK_EXTRA_MODULES="$BUILD_DIR" -DCONFIG_ZMK_STUDIO=y || exit 1
 cp "$BUILD_DIR/zephyr/zmk.uf2" "/build/splitkb_aurora_lily58_left-nice_nano_v2-zmk.uf2"
 
 # export "extra_west_args="
 # export "extra_cmake_args="
 # export "artifact_name=splitkb_aurora_lily58_right-nice_nano_v2-zmk"
 # export "display_name=${shield:+$shield_right - }${board}"
-west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="splitkb_aurora_lily58_right" -DZMK_EXTRA_MODULES="$BUILD_DIR" -DCONFIG_ZMK_STUDIO=y || exit 1
+west build -p -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="splitkb_aurora_lily58_right" -DZMK_EXTRA_MODULES="$BUILD_DIR" -DCONFIG_ZMK_STUDIO=y || exit 1
 cp "$BUILD_DIR/zephyr/zmk.uf2" "/build/splitkb_aurora_lily58_right-nice_nano_v2-zmk.uf2"
 
 # add reset firmware for good measure, can be disabled once you have it made
 export "display_name=${shield:+$shield_reset - }${board}"
-west build -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="$shield_reset" -DZMK_EXTRA_MODULES="$BUILD_DIR" || exit 1
+west build -p -s zmk/app -d "$BUILD_DIR" -b "nice_nano_v2" -- -DZMK_CONFIG="$ZMK_CONFIG_DIR" -DSHIELD="$shield_reset" -DZMK_EXTRA_MODULES="$BUILD_DIR" || exit 1
 cp "$BUILD_DIR/zephyr/zmk.uf2" "/build/nice_nano_v2_reset-zmk.uf2"
